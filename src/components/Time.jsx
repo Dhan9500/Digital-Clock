@@ -1,12 +1,12 @@
 import { UseContextData } from '../context/Context';
 import '../App.css';
 const Time = () => {
-	const { hrs, min, sec, amPm, blink } = UseContextData();
+	const { hrs, min, sec, amPm, blink, toggle } = UseContextData();
 	return (
 		<div className='flex items-center gap-5'>
 			<div className='roboto-slab-time text-6xl text-white gap-3 font- flex'>
 				<span className=' text-transparent bg-clip-text bg-gradient-to-t from-purple-400 to-sky-500 pl-5'>
-					{hrs}
+					{toggle && amPm==='PM' ? parseInt(hrs) + 12 : hrs}
 				</span>
 				<div className='container mx-auto  flex items-center justify-center'>
 					<div className='flex flex-col gap-3 mt-2'>

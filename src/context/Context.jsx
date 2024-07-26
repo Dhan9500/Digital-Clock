@@ -8,52 +8,54 @@ export const UseContextData = () => {
 };
 
 export const ContextProvider = (props) => {
-	const [date, setDate] = useState();
-	const [hrs, setHrs] = useState();
-	const [min, setMin] = useState();
-	const [sec, setSec] = useState();
-	const [day, setDay] = useState();
-	const [amPm, setAmPm] = useState();
-	const [month, setMonth] = useState();
+	const [date, setDate] = useState('');
+	const [hrs, setHrs] = useState('');
+	const [min, setMin] = useState('');
+	const [sec, setSec] = useState('');
+	const [day, setDay] = useState('');
+	const [amPm, setAmPm] = useState('');
+	const [month, setMonth] = useState('');
 	const [blink, setBlink] = useState(false);
+	const [toggle, setToggle] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const dayConvert = (numDay) => {
 		switch (numDay) {
 			case 1:
-				setDay('Mon');
+				setDay('Monday');
 				break;
 			case 2:
-				setDay('Tue');
+				setDay('Tueday');
 				break;
 			case 3:
-				setDay('Wed');
+				setDay('Wedday');
 				break;
 			case 4:
-				setDay('Thu');
+				setDay('Thuday');
 				break;
 			case 5:
-				setDay('Fri');
+				setDay('Friday');
 				break;
 			case 6:
-				setDay('Sat');
+				setDay('Satday');
 				break;
 			default:
-				setDay('Sun');
+				setDay('Sunday');
 				break;
 		}
 	};
 	const monthConvert = {
-		0: 'Jan',
-		1: 'Feb',
-		2: 'Mar',
-		3: 'Apr',
-		4: 'May',
-		5: 'Jun',
-		6: 'Jul',
-		7: 'Aug',
-		8: 'Sep',
-		9: 'Oct',
-		10: 'Nov',
-		11: 'Dec',
+		0: 'Jan, ',
+		1: 'Feb, ',
+		2: 'Mar, ',
+		3: 'Apr, ',
+		4: 'May, ',
+		5: 'Jun, ',
+		6: 'Jul, ',
+		7: 'Aug, ',
+		8: 'Sep, ',
+		9: 'Oct, ',
+		10: 'Nov, ',
+		11: 'Dec, ',
 	};
 	const checkHrs = (hrsParam) => {
 		if (hrsParam > 12) {
@@ -95,6 +97,12 @@ export const ContextProvider = (props) => {
 		dayConvert(date.getDay());
 		setMonth(monthConvert[date.getMonth()]);
 	};
+	const clickToggle = () => {
+		setToggle((prev) => !prev);
+	};
+	setTimeout(() => {
+		setLoading(false);
+	}, 1000);
 	setInterval(() => {
 		time();
 	}, 1000);
@@ -102,6 +110,8 @@ export const ContextProvider = (props) => {
 		setBlink((prev) => !prev);
 	}, [sec]);
 	return (
-		<Context.Provider value={{ date, hrs, min, sec, amPm, day, month, blink }}>{props.children}</Context.Provider>
+		<Context.Provider value={{ date, hrs, min, sec, amPm, day, month, blink, clickToggle, toggle, loading }}>
+			{props.children}
+		</Context.Provider>
 	);
 };
