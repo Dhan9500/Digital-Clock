@@ -24,19 +24,19 @@ export const ContextProvider = (props) => {
 				setDay('Monday');
 				break;
 			case 2:
-				setDay('Tueday');
+				setDay('Tuesday');
 				break;
 			case 3:
-				setDay('Wedday');
+				setDay('Wednesday');
 				break;
 			case 4:
-				setDay('Thuday');
+				setDay('Thursday');
 				break;
 			case 5:
 				setDay('Friday');
 				break;
 			case 6:
-				setDay('Satday');
+				setDay('Saturday');
 				break;
 			default:
 				setDay('Sunday');
