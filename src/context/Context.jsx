@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-
+import '../components/analog.css';
 export const Context = createContext(null);
 
 export const UseContextData = () => {
@@ -17,6 +17,7 @@ export const ContextProvider = (props) => {
 	const [month, setMonth] = useState('');
 	const [blink, setBlink] = useState(false);
 	const [toggle, setToggle] = useState(false);
+	const [clock, setClock] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const dayConvert = (numDay) => {
 		switch (numDay) {
@@ -100,6 +101,9 @@ export const ContextProvider = (props) => {
 	const clickToggle = () => {
 		setToggle((prev) => !prev);
 	};
+	const changeClock = () => {
+		setClock((prev) => !prev);
+	};
 	setTimeout(() => {
 		setLoading(false);
 	}, 1000);
@@ -110,7 +114,9 @@ export const ContextProvider = (props) => {
 		setBlink((prev) => !prev);
 	}, [sec]);
 	return (
-		<Context.Provider value={{ date, hrs, min, sec, amPm, day, month, blink, clickToggle, toggle, loading }}>
+		<Context.Provider
+			value={{ date, hrs, min, sec, amPm, day, month, blink, clickToggle, changeClock, clock, toggle, loading }}
+		>
 			{props.children}
 		</Context.Provider>
 	);
